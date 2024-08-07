@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page - Gacha Pokémon</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+            text-align: center;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button.disabled {
+            background-color: gray;
+            cursor: not-allowed;
+        }
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin: 10px;
+            width: 150px;
+            text-align: center;
+            padding: 10px;
+        }
+        .card img {
+            width: 100px;
+            height: 100px;
+        }
+        .card-name {
+            font-weight: bold;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Gacha Pokémon</h1>
+        <p>Welcome, <span id="userName"></span>!</p>
+        <button onclick="fetchRandomPokemon()">Gacha!</button>
+        <button onclick="logout()">Logout</button>
+        <button onclick="suitJawa()">Game Suit Jawa</button>
+        <h2>Gacha Results</h2>
+        <div id="pokemon-container" class="card-container"></div>
+    </div>
+
+    <script src="suitJawa.js"></script>
+    <script src="pokemon_admin.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+            if (loggedInUser) {
+                document.getElementById('userName').textContent = loggedInUser.nama;
+            } else {
+                window.location.href = 'login.html';
+            }
+        });    
+    </script>
+</body>
+</html>

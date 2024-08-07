@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <style>
+      .login-card {
+        width: 300px;
+        padding: 20px;
+        margin: 100px auto;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        border-radius: 8px;
+        background-color: #fff;
+      }
+      .login-card h2 {
+        margin-bottom: 20px;
+        text-align: center;
+      }
+      .login-card input {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+      .login-card button {
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      .login-card button:hover {
+        background-color: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login-card">
+      <h2>Login</h2>
+      <input type="email" id="email" placeholder="Email" required />
+      <input type="password" id="password" placeholder="Password" required />
+      <button onclick="login()">Login</button>
+    </div>
+
+    <script>
+      var akunArray = [
+        {
+          nama: "Ikhbal",
+          email: "admin@gmail.com",
+          password: "admin123",
+          role: "admin",
+        },
+        {
+          nama: "Aldy",
+          email: "user@gmail.com",
+          password: "user123",
+          role: "user",
+        },
+        {
+          nama: "Michael Johnson",
+          email: "michael.johnson@example.com",
+          password: "password789",
+          role: "user",
+        },
+        {
+          nama: "Emily Davis",
+          email: "emily.davis@example.com",
+          password: "password101",
+          role: "user",
+        },
+        {
+          nama: "William Brown",
+          email: "william.brown@example.com",
+          password: "password202",
+          role: "user",
+        },
+      ];
+
+      function login() {
+        var email = document.getElementById("email").value;
+        var password = document.getElementById("password").value;
+
+        var user = akunArray.find(function (akun) {
+          return akun.email === email && akun.password === password;
+        });
+
+        if (user) {
+          localStorage.setItem("loggedInUser", JSON.stringify(user));
+          if (user.role === "admin") {
+            window.location.href = "admin_page.html";
+          } else if (user.role === "user") {
+            window.location.href = "user_page.html";
+          }
+        } else {
+          alert("Email atau password salah!");
+        }
+      }
+    </script>
+  </body>
+</html>
